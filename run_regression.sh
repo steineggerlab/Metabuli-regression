@@ -20,7 +20,8 @@ if [ "$#" -lt 2 ]; then
 fi
 
 export METABULI="$(abspath "$(command -v "$1")")"
-SCRATCH="$(abspath "$2")"
+export SCRATCH="$(abspath "$2")"
+
 RUN_ONLY="${3:-""}"
 
 BASE="$(dirname "$(abspath "$0")")"
@@ -65,7 +66,9 @@ run_test() {
 set +e
 
 ### Run your tests here
-### run_test run_build "run_build.sh"
+run_test run_build "run_build.sh"
+run_test run_classify_inclusion "run_classify_inclusion.sh"
+run_test run_classify_exclusion "run_classify_exclusion.sh"
 
 set -e
 
