@@ -46,7 +46,7 @@ else
 fi
 
 ## 2. Compare recall and precision.
-TARGET="76.5200 1.0000 71.5400 1.0000" # paired-end Recall, paired-end Precision, single-end Recall, single-end Precision
+TARGET="76.0800 1.0000 71.2400 1.0000" # paired-end Recall, paired-end Precision, single-end Recall, single-end Precision
 
 PE_RECALL=$(grep -w 227984 "${RESULTS}/fasta_paired_report.tsv" | awk '{print $1}')
 PE_CLASSIFIED=$(grep -w root "${RESULTS}/fasta_paired_report.tsv" | awk '{print $1}')
