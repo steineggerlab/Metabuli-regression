@@ -8,9 +8,9 @@ REF="${DATADIR}/reference/"
 
 cd "${DATADIR}/files_for_db/"
 
-"${METABULI}" build "${RESULTS}/inclusionDB" "${IN_INPUT}" "${ACC2TAXID}" --threads 1 --buffer-size 100000 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" build "${RESULTS}/inclusionDB" "${IN_INPUT}" "${ACC2TAXID}" --threads 1 --max-ram 8 --taxonomy-path "${TAXONOMY}"
 
-"${METABULI}" build "${RESULTS}/exclusionDB" "${EX_INPUT}" "${ACC2TAXID}" --threads 1 --buffer-size 100000 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" build "${RESULTS}/exclusionDB" "${EX_INPUT}" "${ACC2TAXID}" --threads 1 --max-ram 8 --taxonomy-path "${TAXONOMY}"
 
 cd "${BASE}"
 
