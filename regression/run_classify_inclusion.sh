@@ -8,14 +8,14 @@ DB="${DATADIR}/reference/in"
 TAXONOMY="${DATADIR}/files_for_db/taxonomy"
 
 ## Paired-end FASTA
-"${METABULI}" classify "${FASTA1}" "${FASTA2}" "${DB}" "${RESULTS}" "fasta_paired" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify "${FASTA1}" "${FASTA2}" "${DB}" "${RESULTS}" "fasta_paired" --max-ram 6 --threads 1 
 ## Paired-end FASTQ
-"${METABULI}" classify "${FASTQ1}" "${FASTQ2}" "${DB}" "${RESULTS}" "fastq_paired" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify "${FASTQ1}" "${FASTQ2}" "${DB}" "${RESULTS}" "fastq_paired" --max-ram 6 --threads 1 
 
 ## Single-end FASTA
-"${METABULI}" classify --seq-mode 1 "${FASTA1}" "${DB}" "${RESULTS}" "fasta_single" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify --seq-mode 1 "${FASTA1}" "${DB}" "${RESULTS}" "fasta_single" --max-ram 6 --threads 1 
 ## Single-end FASTQ
-"${METABULI}" classify --seq-mode 1 "${FASTQ1}" "${DB}" "${RESULTS}" "fastq_single" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify --seq-mode 1 "${FASTQ1}" "${DB}" "${RESULTS}" "fastq_single" --max-ram 6 --threads 1 
 
 ## Evaluate results
 

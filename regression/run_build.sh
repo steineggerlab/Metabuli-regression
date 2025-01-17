@@ -17,7 +17,7 @@ cd "${BASE}"
 ## Evaluate
 
 ## 1. Compare built DBs with expected DBs.
-CMP_NUM=8
+CMP_NUM=6
 ID_CNT=0
 
 ## Compare results between paired-end FASTA and FASTQ.
@@ -34,9 +34,6 @@ if diff -q "${RESULTS}/inclusionDB/split" "${REF}/in/split"; then
     ID_CNT=$((ID_CNT+1))
 fi
 
-if diff -q "${RESULTS}/inclusionDB/taxonomyDB" "${REF}/in/taxonomyDB"; then
-    ID_CNT=$((ID_CNT+1))
-fi
 
 ## Exclusion DB
 if diff -q "${RESULTS}/exclusionDB/diffIdx" "${REF}/ex/diffIdx"; then
@@ -48,10 +45,6 @@ if diff -q "${RESULTS}/exclusionDB/info" "${REF}/ex/info"; then
 fi
 
 if diff -q "${RESULTS}/exclusionDB/split" "${REF}/ex/split"; then
-    ID_CNT=$((ID_CNT+1))
-fi
-
-if diff -q "${RESULTS}/exclusionDB/taxonomyDB" "${REF}/ex/taxonomyDB"; then
     ID_CNT=$((ID_CNT+1))
 fi
 

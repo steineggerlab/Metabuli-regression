@@ -5,20 +5,19 @@ FASTA2="${DATADIR}/reads/ERR9594652_5000_2.fna"
 FASTQ1="${DATADIR}/reads/ERR9594652_5000_1.fq"
 FASTQ2="${DATADIR}/reads/ERR9594652_5000_2.fq"
 DB="${DATADIR}/reference/ex"
-TAXONOMY="${DATADIR}/files_for_db/taxonomy"
 
 
 ## Paired-end FASTA
-"${METABULI}" classify "${FASTA1}" "${FASTA2}" "${DB}" "${RESULTS}" "fasta_paired" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify "${FASTA1}" "${FASTA2}" "${DB}" "${RESULTS}" "fasta_paired" --max-ram 6 --threads 1 
 
 ## Paired-end FASTQ
-"${METABULI}" classify "${FASTQ1}" "${FASTQ2}" "${DB}" "${RESULTS}" "fastq_paired" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify "${FASTQ1}" "${FASTQ2}" "${DB}" "${RESULTS}" "fastq_paired" --max-ram 6 --threads 1
 
 ## Single-end FASTA
-"${METABULI}" classify --seq-mode 1 "${FASTA1}" "${DB}" "${RESULTS}" "fasta_single" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify --seq-mode 1 "${FASTA1}" "${DB}" "${RESULTS}" "fasta_single" --max-ram 6 --threads 1
 
 ## Single-end FASTQ
-"${METABULI}" classify --seq-mode 1 "${FASTQ1}" "${DB}" "${RESULTS}" "fastq_single" --max-ram 6 --threads 1 --taxonomy-path "${TAXONOMY}"
+"${METABULI}" classify --seq-mode 1 "${FASTQ1}" "${DB}" "${RESULTS}" "fastq_single" --max-ram 6 --threads 1
 
 
 ## Evaluate results
@@ -49,11 +48,11 @@ fi
 TARGET="76.0800 1.0000 71.2400 1.0000" # paired-end Recall, paired-end Precision, single-end Recall, single-end Precision
 
 PE_RECALL=$(grep -w 227984 "${RESULTS}/fasta_paired_report.tsv" | awk '{print $1}')
-PE_CLASSIFIED=$(grep -w root "${RESULTS}/fasta_paired_report.tsv" | awk '{print $1}')
+PE_CLASSIFIED=$(head -n 2 "${RESULTS}/fasta_paired_report.tsv" | tail -n 1 | awk '{print $1}')
 PE_PRECISION=$(echo "scale=4; ${PE_RECALL}/${PE_CLASSIFIED}" | bc)
 
 SG_RECALL=$(grep -w 227984 "${RESULTS}/fasta_single_report.tsv" | awk '{print $1}')
-SG_CLASSIFIED=$(grep -w root "${RESULTS}/fasta_single_report.tsv" | awk '{print $1}')
+SG_CLASSIFIED=$(head -n 2 "${RESULTS}/fasta_single_report.tsv" | tail -n 1 | awk '{print $1}')
 SG_PRECISION=$(echo "scale=4; ${SG_RECALL}/${SG_CLASSIFIED}" | bc)
 
 ACTUAL="${PE_RECALL} ${PE_PRECISION} ${SG_RECALL} ${SG_PRECISION}"
